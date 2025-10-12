@@ -1,0 +1,35 @@
+rust_library {
+    name: "libeleglide_bike_service",
+    crate_name: "eleglide_bike_service",
+    srcs: ["lib/src/lib.rs"],
+    vendor: true,
+    rustlibs: [
+        "EleglideBikeInterface-rust",
+        "libbinder_rs",
+    ],
+}
+
+rust_binary {
+    name: "birthday_server",
+    crate_name: "birthday_server",
+    srcs: ["service/src/server.rs"],
+    rustlibs: [
+        "EleglideBikeInterface-rust",
+        "libeleglide_bike_service",
+    ],
+    vendor : true,
+    prefer_rlib: true, // To avoid dynamic link error.
+}
+
+rust_test {
+    name: "eleglide_bike_service_test",
+    crate_name: "eleglide_bike_service_test",
+    srcs: ["tests/tests_integration.rs"],
+    vendor: true,
+    test_suites: ["general-tests"],
+    rustlibs: [
+        "libeleglide_bike_service",
+        "EleglideBikeInterface-rust",
+        "libbinder_rs",
+    ],
+}
