@@ -1,4 +1,4 @@
-package com.garvield.bike.hardware;
+package com.garvield.bike.hardware.callbacks;
 
 oneway interface BatteryLevelCallback {
     void onBatteryUpdate(in long batteryLevel);

@@ -1,6 +1,6 @@
 use EleglideBikeInterface::aidl::com::garvield::bike::hardware::{
     IBatteryControl::{BnBatteryControl, IBatteryControl},
-    BatteryLevelCallback::IBatteryLevelCallback,
+    callbacks::BatteryLevelCallback::IBatteryLevelCallback
 };
 use binder::{self, BinderFeatures, Interface, Strong};
 use std::sync::{Arc, Mutex};
@@ -47,17 +47,17 @@ impl EleglideBikeService {
     pub fn simulate_discharge(&self) {
         let battery_level = self.battery_level.clone();
         let callbacks = self.callbacks.clone();
-        
+
         std::thread::spawn(move || {
             loop {
                 std::thread::sleep(std::time::Duration::from_secs(5));
-                
+
                 let mut level = battery_level.lock().unwrap();
                 if *level > 0 {
                     *level -= 1;
                     let current_level = *level;
                     drop(level);
-                    
+
                     let cbs = callbacks.lock().unwrap();
                     for callback in cbs.iter() {
                         let _ = callback.onBatteryUpdate(current_level);

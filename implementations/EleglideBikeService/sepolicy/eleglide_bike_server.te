@@ -1,0 +1,9 @@
+type eleglide_bike_server, domain;
+type eleglide_bike_server_exec, exec_type, vendor_file_type, file_type;
+type eleglide_bike_vndservice, vndservice_manager_type;
+
+init_daemon_domain(eleglide_bike_server)
+binder_use(eleglide_bike_server)
+vndbinder_use(eleglide_bike_server)
+
+add_service(eleglide_bike_server, eleglide_bike_vndservice)

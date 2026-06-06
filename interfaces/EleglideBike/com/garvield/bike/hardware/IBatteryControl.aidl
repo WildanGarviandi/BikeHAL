@@ -1,6 +1,6 @@
 package com.garvield.bike.hardware;
 
-import com.garvield.bike.hardware.BatteryLevelCallback;
+import com.garvield.bike.hardware.callbacks.BatteryLevelCallback;
 
 interface IBatteryControl {
     void getCurrentBatteryLevel(in BatteryLevelCallback callback);

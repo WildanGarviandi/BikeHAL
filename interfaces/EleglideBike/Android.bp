@@ -3,6 +3,7 @@ aidl_interface {
     vendor_available: true,
     srcs: [
         "com/garvield/bike/hardware/*.aidl",
+        "com/garvield/bike/hardware/callbacks/*.aidl"
     ],
     unstable: true, // still needs to determine what else capability that can be done
     backend: {
@@ -16,7 +17,7 @@ aidl_interface {
             enabled: true,
         },
         java: {
-            enabled: true,
+            enabled: false,
         }
     },
 }

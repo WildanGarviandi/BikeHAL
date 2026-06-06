@@ -1,0 +1,6 @@
+service eleglide_bike_server /vendor/bin/eleglide_bike_server
+    class hal
+    user nobody
+    group nobody
+    seclabel u:r:eleglide_bike_server:s0
+    restart_period 5

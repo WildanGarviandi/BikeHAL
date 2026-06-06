@@ -10,21 +10,24 @@ rust_library {
 }
 
 rust_binary {
-    name: "birthday_server",
-    crate_name: "birthday_server",
+    name: "eleglide_bike_server",
+    crate_name: "eleglide_bike_server",
     srcs: ["service/src/server.rs"],
     rustlibs: [
         "EleglideBikeInterface-rust",
         "libeleglide_bike_service",
+        "liblogger",
+        "liblog_rust",
     ],
     vendor : true,
     prefer_rlib: true, // To avoid dynamic link error.
+    init_rc: ["eleglide_bike_server.rc"],
 }
 
 rust_test {
     name: "eleglide_bike_service_test",
     crate_name: "eleglide_bike_service_test",
-    srcs: ["tests/tests_integration.rs"],
+    srcs: ["service/tests/tests_integration.rs"],
     vendor: true,
     test_suites: ["general-tests"],
     rustlibs: [
